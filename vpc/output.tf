@@ -9,6 +9,3 @@ output "vswitch_ids" {
 output "route_table_id" {
   value = alicloud_route_table.this.id
 }
-# output "nat_gateway_id" {
-#   value = module.nat_gateway.id
-# }
