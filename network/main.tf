@@ -24,16 +24,20 @@ resource "alicloud_route_table_attachment" "this" {
 }
 
 module "eip" {
-  source = "./network/eip"
+  source = "./eip"
   create_eip = true
+  eip_name = var.eip_name
+  eip_bandwidth = var.eip_bandwidth
+  payment_type = var.eip_payment_type
 }
 
 module "nat_gateway" {
-  source = "./network/nat"
+  source = "./nat"
   create_nat_gateway = true
   vpc_id = alicloud_vpc.this.id
   vswitch_id = alicloud_vswitch.this.id
-  eip_id = module.eip.eip_address_id
+  route_table_id = alicloud_route_table.this.id
+  eip_address_id = module.eip.eip_address_id
   snat_entries = [
     {
         snat_ip = module.eip.eip_address
@@ -41,3 +45,4 @@ module "nat_gateway" {
     }
   ]
 }
+

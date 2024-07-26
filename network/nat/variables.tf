@@ -50,9 +50,9 @@ variable "eip_name" {
   default     = ""
 }
 
-variable "eip_bandwidth" {
-  description = "The bandwidth of the EIP for the NAT GateWay"
-}
+# variable "eip_bandwidth" {
+#   description = "The bandwidth of the EIP for the NAT GateWay"
+# }
 
 variable "snat_entries" {
   description = "variable for snat entries"

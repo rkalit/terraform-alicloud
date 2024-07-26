@@ -37,3 +37,15 @@ variable "rtb_name" {
   type = string
   default = ""
 }
+
+variable "eip_name" {
+  type = string
+}
+
+variable "eip_bandwidth" {
+    type = number
+}
+
+variable "eip_payment_type" {
+    type = string
+}
