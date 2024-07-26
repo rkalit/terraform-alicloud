@@ -25,7 +25,7 @@ resource "alicloud_route_table_attachment" "this" {
 
 module "eip" {
   source = "./eip"
-  create_eip = true
+  create_eip = var.create_eip
   eip_name = var.eip_name
   eip_bandwidth = var.eip_bandwidth
   payment_type = var.eip_payment_type
@@ -33,7 +33,7 @@ module "eip" {
 
 module "nat_gateway" {
   source = "./nat"
-  create_nat_gateway = true
+  create_nat_gateway = var.create_nat_gateway
   vpc_id = alicloud_vpc.this.id
   vswitch_id = alicloud_vswitch.this.id
   route_table_id = alicloud_route_table.this.id

@@ -24,17 +24,17 @@ variable "vpc_cidr" {
 }
 
 variable "vswitch_cidrs" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
 variable "vswitch_name" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
 variable "rtb_name" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -43,9 +43,17 @@ variable "eip_name" {
 }
 
 variable "eip_bandwidth" {
-    type = number
+  type = number
 }
 
 variable "eip_payment_type" {
-    type = string
+  type = string
+}
+
+variable "create_eip" {
+  type = bool
+}
+
+variable "create_nat_gateway" {
+  type = bool
 }
