@@ -53,3 +53,17 @@ variable "eip_name" {
 variable "eip_bandwidth" {
   description = "The bandwidth of the EIP for the NAT GateWay"
 }
+
+variable "snat_entries" {
+  description = "variable for snat entries"
+  type = list(object({
+    snat_ip = string
+    vswitch_id = string
+  }))
+  default = []
+}
+
+variable "route_table_id" {
+  description = "the id of the route table for route entry"
+  type = string
+}
