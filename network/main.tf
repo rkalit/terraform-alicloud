@@ -23,20 +23,21 @@ resource "alicloud_route_table_attachment" "this" {
   route_table_id = alicloud_route_table.this.id
 }
 
-# NAT Gateway
-resource "alicloud_nat_gateway" "this" {
-  vpc_id           = var.nat.vpc_id
-  vswitch_id       = var.nat.vswitch_id
-  nat_gateway_name = var.nat.name
-  nat_type         = var.nat.type
-  payment_type     = var.nat.payment_type
+module "eip" {
+  source = "./network/eip"
+  create_eip = true
 }
 
-resource "alicloud_eip_address" "this" {
-  description  = var.name
-  isp          = "BGP"
-  address_name = var.name
-  netmode      = "public"
-  bandwidth    = var.bandwidth
-  payment_type = var.payment_type
+module "nat_gateway" {
+  source = "./network/nat"
+  create_nat_gateway = true
+  vpc_id = alicloud_vpc.this.id
+  vswitch_id = alicloud_vswitch.this.id
+  eip_id = module.eip.eip_address_id
+  snat_entries = [
+    {
+        snat_ip = module.eip.eip_address
+        vswitch_id = alicloud_vswitch.this.*.id
+    }
+  ]
 }
