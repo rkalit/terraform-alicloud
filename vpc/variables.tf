@@ -38,22 +38,22 @@ variable "rtb_name" {
   default = ""
 }
 
-variable "eip_name" {
-  type = string
-}
+# variable "eip_name" {
+#   type = string
+# }
 
-variable "eip_bandwidth" {
-  type = number
-}
+# variable "eip_bandwidth" {
+#   type = number
+# }
 
-variable "eip_payment_type" {
-  type = string
-}
+# variable "eip_payment_type" {
+#   type = string
+# }
 
-variable "create_eip" {
-  type = bool
-}
+# variable "create_eip" {
+#   type = bool
+# }
 
-variable "create_nat_gateway" {
-  type = bool
-}
+# variable "create_nat_gateway" {
+#   type = bool
+# }
