@@ -15,44 +15,44 @@ variable "region" {
 
 variable "vpc_name" {
   description = "variable for the name of the VPC"
-  type = string
+  type        = string
 }
 
 variable "vpc_cidr" {
   description = "variable for the CIDR block of the VPC"
-  type = string
+  type        = string
 }
 
 variable "vswitch_cidrs" {
   description = "variable for the CIDR of the vswitch"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "vswitch_name" {
   description = "variable for the vswitches name"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "eip_name" {
   description = "variable for the Elastic IP name"
-  type = string
+  type        = string
 }
 
 variable "eip_bandwidth" {
   description = "variable for bandwidth of the EIP"
-  type = number
-  default = 10
+  type        = number
+  default     = 10
 }
 
 variable "eip_payment_type" {
   description = "variable for EIP payment type (Prepaid or Postpaid)"
-  type = string
-  default = "PayAsYouGo"
+  type        = string
+  default     = "PayAsYouGo"
 }
 
 variable "rtb_name" {
   description = "variable route table name"
-  type = string
+  type        = string
 }
 
 variable "create_eip" {
@@ -61,4 +61,12 @@ variable "create_eip" {
 
 variable "create_nat_gateway" {
   type = bool
+}
+
+variable "sg_name" {
+  type = string
+}
+
+variable "security_group_rules" {
+  description = "variable for security group rules"
 }
