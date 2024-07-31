@@ -67,6 +67,15 @@ variable "sg_name" {
   type = string
 }
 
-variable "security_group_rules" {
-  description = "variable for security group rules"
+# variable "security_group_rules" {
+#   description = "variable for security group rules"
+# }
+
+variable "ecsdata" {
+  description = "variable for needed for creating the ECS instance"
+  type = map(string)
+}
+
+variable "ingress_rules" {
+  description = "List of the ingress rules to apply on the security group rules"
 }

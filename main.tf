@@ -35,13 +35,19 @@ module "sec_group" {
   vpc_id  = module.vpc.this_vpc_id
   sg_name = var.sg_name
 
-  for_each   = var.security_group_rules
-  rule_type  = each.value.type
-  protocol   = each.value.protocol
-  policy     = each.value.policy
-  port_range = each.value.port_range
-  priority   = each.value.priority
-  cidr_ip    = each.value.cidr_ip
+  ingress_rules = var.ingress_rules
 }
 
+
+module "ecs" {
+  source           = "./ecs"
+  instance_name    = var.ecsdata["name"]
+  hostname         = var.ecsdata["hostname"]
+  image_id         = data.alicloud_images.ubuntu.images.0.id
+  instance_type    = var.ecsdata["instance_type"]
+  system_disk_size = var.ecsdata["system_disk_size"]
+  security_groups  = module.sec_group.security_group_id
+  vswitch_id       = module.vpc.vswitch_ids[0]
+  password         = var.ecsdata["password"]
+}
 
