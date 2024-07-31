@@ -31,7 +31,7 @@ variable "private_ip" {
 
 variable "security_groups" {
   description = "variable for security group id for the instances"
-  type        = list(string)
+  type        = string
 }
 
 variable "system_disk_name" {
@@ -54,15 +54,22 @@ variable "system_disk_size" {
 variable "data_disk_name" {
   description = "variable for data disk name"
   type        = string
+  default     = ""
 }
 
 variable "data_disk_size" {
   description = "variable for data disk size"
   type        = number
+  default     = 0
 }
 
 variable "data_disk_category" {
   description = "variable for data disk category"
   type        = string
   default     = "cloud_ssd"
+}
+
+variable "password" {
+  description = "the password for the instances"
+  type        = string
 }
