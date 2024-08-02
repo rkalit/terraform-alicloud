@@ -40,15 +40,16 @@ module "sec_group" {
 
 
 module "ecs" {
-  source           = "./ecs"
-  instance_name    = var.ecsdata["name"]
-  hostname         = var.ecsdata["hostname"]
-  image_name_regex = var.ecsdata["image_name_regex"]
-  instance_type    = var.ecsdata["instance_type"]
-  system_disk_size = var.ecsdata["system_disk_size"]
+  source = "./ecs"
+
+  for_each         = var.instances
+  instance_name    = each.value.name
+  hostname         = each.value.hostname
+  image_name_regex = each.value.image_name_regex
+  instance_type    = each.value.instance_type
+  system_disk_size = each.value.system_disk_size
   security_groups  = module.sec_group.security_group_id
   vswitch_id       = module.vpc.vswitch_ids[0]
-  password         = var.ecsdata["password"]
-  data_disk_size   = 100
+  password         = each.value.password
+  data_disk_size   = each.value.data_disk_size
 }
-

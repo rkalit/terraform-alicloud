@@ -81,3 +81,16 @@ variable "ingress_rules" {
     cidr_ip    = string
   }))
 }
+
+variable "instances" {
+  description = "List of ECS instances to be created"
+  type = map(object({
+    name = string
+    hostname = string
+    image_name_regex = string
+    instance_type = string
+    system_disk_size = number
+    password = string
+    data_disk_size = number
+  }))
+}
