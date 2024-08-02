@@ -43,11 +43,12 @@ module "ecs" {
   source           = "./ecs"
   instance_name    = var.ecsdata["name"]
   hostname         = var.ecsdata["hostname"]
-  image_id         = data.alicloud_images.ubuntu.images.0.id
+  image_name_regex = var.ecsdata["image_name_regex"]
   instance_type    = var.ecsdata["instance_type"]
   system_disk_size = var.ecsdata["system_disk_size"]
   security_groups  = module.sec_group.security_group_id
   vswitch_id       = module.vpc.vswitch_ids[0]
   password         = var.ecsdata["password"]
+  data_disk_size   = 100
 }
 
