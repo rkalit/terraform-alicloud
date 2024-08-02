@@ -8,10 +8,10 @@ variable "hostname" {
   type        = string
 }
 
-variable "image_id" {
-  description = "variable for image id for the instance"
-  type        = string
-}
+# variable "image_id" {
+#   description = "variable for image id for the instance"
+#   type        = string
+# }
 
 variable "instance_type" {
   description = "variable for instance type"
@@ -71,5 +71,16 @@ variable "data_disk_category" {
 
 variable "password" {
   description = "the password for the instances"
+  type        = string
+}
+
+variable "data_disk_delete_with_instance" {
+  description = "whether the data disk will be released after the instance release"
+  type        = bool
+  default     = true
+}
+
+variable "image_name_regex" {
+  description = "The name regex for the image id to be used as the image of the instance"
   type        = string
 }
